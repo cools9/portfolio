@@ -6,3 +6,8 @@ body {
     margin: 20px;
 }
 
+img {
+    border-radius: 1000;
+    width: 500;
+    height:500;
+}
