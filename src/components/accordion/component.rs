@@ -51,7 +51,7 @@ pub fn AccordionTrigger(props: AccordionTriggerProps) -> Element {
             ChevronDown {
                 class: Styles::dx_accordion_expand_icon,
                 size: "20px",
-                stroke: "var(--secondary-color-4)",
+                stroke: "white",
             }
         }
     }

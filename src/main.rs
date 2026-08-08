@@ -26,35 +26,18 @@ fn App() -> Element {
                 class:"text-4xl",
                 "Cools9"
              }
-            Accordion {
-                AccordionItem {
-                    index:0,
-                    AccordionTrigger {
-                        "About Me"
-                    }
-
+            Accordion{allow_multiple_open: false, horizontal: false,
+            AccordionItem { index: 0,
+                    AccordionTrigger { "Who am i??" }
                     AccordionContent {
-                        p {
-                            "I'm a developer who likes building cool stuff."
-                        }
-                    }
-                }
-
-                AccordionItem {
-                    index:1,
-                    AccordionTrigger {
-                        "Projects"
-                    }
-
-                    AccordionContent {
-                        p {
-                            class:"text-gray-900 dark:text-white mt-5 text-base font-medium tracking-tight",
-                            "Here are some of my projects."
+                        div { padding_bottom: "1rem",
+                            p { padding: "0",
+                                "A [insert age here] guy who likes Rust"                            }
                         }
                     }
                 }
             }
-            }
+        }
 
         }
     }
