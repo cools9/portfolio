@@ -40,70 +40,66 @@ fn App() -> Element {
         }
 
         div {
-            class: "min-h-screen bg-black text-white",
+    class: "min-h-screen bg-black text-white flex flex-col justify-between",
 
-            div {
-                class: "flex items-center gap-4",
+    div {
+        class: "flex items-start gap-4",
 
-                img {
-                    class: "size-108 shadow-xl rounded-full",
-                    src: ICON,
-                }
+        img {
+            class: "size-108 shadow-xl rounded-full",
+            src: ICON,
+        }
 
-                div {
-                    h1 {
-                        class: "text-4xl",
-                        "Cools9"
+        div {
+            class: "flex flex-col gap-4",
+
+            h1 {
+                class: "text-4xl",
+                "Cools9"
+            }
+
+            Accordion {
+                allow_multiple_open: false,
+                horizontal: false,
+
+                AccordionItem {
+                    index: 0,
+
+                    AccordionTrigger {
+                        "Who am I??"
                     }
 
-                    
+                    AccordionContent {
+                        div {
+                            padding_bottom: "1rem",
 
-                    Accordion {
-                        allow_multiple_open: false,
-                        horizontal: false,
-
-                        AccordionItem {
-                            index: 0,
-
-                            AccordionTrigger {
-                                "Who am I??"
+                            p {
+                                padding: "0",
+                                "A guy who is "
+                                span {
+                                    class: "text-gray-400",
+                                    "{age}"
+                                }
+                                " and likes Rust."
                             }
+                        }
+                    }
+                }
 
-                            AccordionContent {
-                                div {
-                                    padding_bottom: "1rem",
+                AccordionItem {
+                    index: 1,
 
-                                    p {
-                                    padding: "0",
+                    AccordionTrigger {
+                        "What am i??"
+                    }
 
-                                    "A guy who is "
+                    AccordionContent {
+                        div {
+                            padding_bottom: "1rem",
 
-                                    span {
-                                        class: "text-gray-400",
-                                        "{age}"
-                                    }
-
-                                    " and likes Rust."
-                                }
-                                }
-                            },
-                        AccordionItem {
-                            index: 1,
-
-                            AccordionTrigger {
-                                "What am i??"
-                            }
-
-                            AccordionContent {
-                                div {
-                                    padding_bottom: "1rem",
-
-                                    p {
-                                    padding: "0",
-
-                                    "A homo sapien who writes awful code in Rust,Python and Go"
-                                }
-                                }
+                            p {
+                                padding: "0",
+                                "A homo sapien who writes awful code in Rust,Python and Go"
                             }
                         }
                     }
@@ -111,8 +107,19 @@ fn App() -> Element {
             }
         }
     }
+
+    div {
+        class: "w-full flex justify-center pb-6",
+        h1 {
+            class: "relative top-0 w-fit h-auto py-4 justify-center flex bg-gradient-to-r items-center from-blue-500 via-teal-500 to-pink-500 bg-clip-text text-6xl font-extrabold text-transparent text-center select-auto",
+            "Wanna look at my projects..........."
+        }
+    }
 }
-}
+        }
+    }
+
+
 
 fn calculate_age(birth: NaiveDateTime) -> String {
     let now = Local::now().naive_local();
