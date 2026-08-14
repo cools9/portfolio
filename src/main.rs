@@ -117,93 +117,107 @@ fn App() -> Element {
 fn calculate_age(birth: NaiveDateTime) -> String {
     let now = Local::now().naive_local();
 
-    // Start with the rough number of years.
+    // Work out completed years.
     let mut years = now.year() - birth.year();
 
-    // Find this year's birthday.
-    let mut birthday_this_year = NaiveDate::from_ymd_opt(
-        now.year(),
+    if (now.month(), now.day()) < (birth.month(), birth.day()) {
+        years -= 1;
+    }
+
+    // Date of the most recent birthday.
+    let birthday_year = birth.year() + years;
+
+    let last_birthday = NaiveDate::from_ymd_opt(
+        birthday_year,
         birth.month(),
         birth.day(),
     )
     .unwrap();
 
-    // If this year's birthday hasn't happened yet,
-    // subtract one year.
-    if birthday_this_year > now.date() {
-        years -= 1;
-
-        birthday_this_year = NaiveDate::from_ymd_opt(
-            now.year() - 1,
-            birth.month(),
-            birth.day(),
-        )
-        .unwrap();
-    }
-
-    // Now calculate months since the last birthday.
+    // Work out completed months after the last birthday.
     let mut months =
-        now.month() as i32 - birthday_this_year.month() as i32;
+        (now.year() - last_birthday.year()) * 12
+        + now.month() as i32
+        - last_birthday.month() as i32;
 
+    if now.day() < last_birthday.day() {
+        months -= 1;
+    }
+
+    // If we're still before the birthday/month anniversary,
+    // make sure the value isn't negative.
     if months < 0 {
-        months += 12;
+        months = 0;
     }
 
-    // Find the date after adding those months.
-    let mut month_year = birthday_this_year.year();
-    let mut month = birthday_this_year.month() as i32 + months;
+    // Find the date after those completed months.
+    let total_months =
+        last_birthday.year() * 12
+        + last_birthday.month() as i32 - 1
+        + months;
 
-    if month > 12 {
-        month -= 12;
-        month_year += 1;
-    }
+    let anniversary_year = total_months / 12;
+    let anniversary_month = (total_months % 12) + 1;
 
-    let mut month_date = NaiveDate::from_ymd_opt(
-        month_year,
-        month as u32,
-        birthday_this_year.day(),
+    // Find how many days are in the anniversary month.
+    let next_month_year = if anniversary_month == 12 {
+        anniversary_year + 1
+    } else {
+        anniversary_year
+    };
+
+    let next_month = if anniversary_month == 12 {
+        1
+    } else {
+        anniversary_month + 1
+    };
+
+    let first_of_next_month = NaiveDate::from_ymd_opt(
+        next_month_year,
+        next_month as u32,
+        1,
     )
     .unwrap();
 
-    // If that month anniversary hasn't happened yet,
-    // go back one month.
-    if month_date > now.date() {
-        months -= 1;
+    let first_of_month = NaiveDate::from_ymd_opt(
+        anniversary_year,
+        anniversary_month as u32,
+        1,
+    )
+    .unwrap();
 
-        if months < 0 {
-            months = 11;
-        }
+    let days_in_month =
+        (first_of_next_month - first_of_month).num_days();
 
-        if month == 1 {
-            month = 12;
-            month_year -= 1;
-        } else {
-            month -= 1;
-        }
+    // Keep the birthday day where possible.
+    // For example, a 29th birthday in February becomes Feb 28
+    // in a non-leap year.
+    let anniversary_day =
+        birth.day().min(days_in_month as u32);
 
-        month_date = NaiveDate::from_ymd_opt(
-            month_year,
-            month as u32,
-            birthday_this_year.day(),
+    let anniversary_date = NaiveDate::from_ymd_opt(
+        anniversary_year,
+        anniversary_month as u32,
+        anniversary_day,
+    )
+    .unwrap();
+
+    // Put the original birth time onto the anniversary date.
+    let anniversary = anniversary_date
+        .and_hms_opt(
+            birth.hour(),
+            birth.minute(),
+            birth.second(),
         )
         .unwrap();
-    }
 
-    // Calculate the remaining days.
-    let days = (now.date() - month_date).num_days();
+    // Exact remaining time after years + months.
+    let remaining = now.signed_duration_since(anniversary);
 
-    // Midnight of the current day.
-    let today_midnight = now
-        .date()
-        .and_hms_opt(0, 0, 0)
-        .unwrap();
-
-    // Time elapsed since midnight.
-    let seconds_today = (now - today_midnight).num_seconds();
-
-    let hours = seconds_today / 3600;
-    let minutes = (seconds_today % 3600) / 60;
-    let seconds = seconds_today % 60;
+    let days = remaining.num_days();
+    let hours = remaining.num_hours() % 24;
+    let minutes = remaining.num_minutes() % 60;
+    let seconds = remaining.num_seconds() % 60;
 
     format!(
         "{} years, {} months, {} days, {} hours, {} minutes, {} seconds old",
