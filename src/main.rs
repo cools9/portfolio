@@ -20,21 +20,25 @@ static ICON: Asset = asset!("/assets/pfp.jpeg");
 struct Project {
     title: &'static str,
     description: &'static str,
+    url: &'static str,
 }
 
 fn projects() -> Vec<Project> {
     vec![
         Project {
-            title: "Card Title",
-            description: "Card description goes here.",
+            title: "This Site",
+            description: "Yes this site which youre looking at! is made by me using Rust and Dioxus.",
+            url: "https://github.com/cools9/portfolio"
         },
         Project {
-            title: "Another Project",
-            description: "Short description here.",
+            title: "ARRFPS",
+            description: "A Relatively Realistic First Person Shooter(ARRFPS) game i made using godot engine",
+            url: "https://github.com/cools9/ARRFPS-A-Relatively-Realistic-First-Person-Shooter-"
         },
         Project {
-            title: "Third Project",
-            description: "Short description here.",
+            title: "AlooShaders",
+            description: "My first Mein Kampf Shaders made by me.",
+            url: "https://github.com/cools9/AlooShaders"
         },
     ]
 }
@@ -66,9 +70,9 @@ fn App() -> Element {
             document::Stylesheet {
                 href: asset!("/assets/tailwind.css")
             }
-
+           
             div {
-        class: "min-h-screen bg-black text-white flex flex-col justify-between",
+        class: "min-h-screen bg-gray-950 text-white flex flex-col justify-between font-maple",
 
         div {
             class: "flex items-start gap-4",
@@ -155,17 +159,27 @@ fn App() -> Element {
                         CardTitle { "{project.title}" }
                         CardDescription { "{project.description}" }
                     }
-                    CardContent {
-                        p { "Main content of the card." }
-                        //button{"HELOO BRO"}
-                    }
                     CardFooter {
-                        //Button { variant: ButtonVariant::Secondary,"GitHub" }
-                        button{
-                            class:"rounded-[0.5vw] bg-blue-500 w-40 h-10",
-                            "GitHub",
-                            GitBranch { size: 20, stroke: "red" }
+                        
+                        button {
+                            class: "inline-flex items-center gap-2 rounded-lg bg-gray-900 px-4 h-10 text-sm font-medium text-white shadow-sm hover:bg-gray-800 transition-all",
+                            onclick: move |_| {
+                                web_sys::window()
+                                    .unwrap()
+                                    .location()
+                                    .set_href({project.url});
+                            },
+                            GitBranch {
+                                size: 18,
+                                stroke: "#ffffff",
+                                stroke_width: 2
+                            }
+
+                            "GitHub"
+
+                            
                         }
+
                     }
 
             }

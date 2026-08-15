@@ -1,2 +1,13 @@
 @import "tailwindcss";
 @source "./src/**/*.{rs,html,css}";
+@font-face {
+    font-family: "Maple Mono";
+    src: url("assets/maple-mono-latin-500-italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme {
+    --font-maple: "Maple Mono", monospace;
+}

@@ -12,6 +12,7 @@ dioxus = { version = "0.7.1", features = [] }
 dioxus-icons = "0.1.0"
 dioxus-primitives = { git = "https://github.com/DioxusLabs/components", version = "0.0.1", default-features = false }
 gloo-timers = { version = "0.3", features = ["futures"] }
+web-sys = "0.3.104"
 
 [features]
 default = ["web"]
