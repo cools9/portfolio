@@ -75,10 +75,10 @@ fn App() -> Element {
         class: "min-h-screen bg-gray-950 text-white flex flex-col justify-between font-maple",
 
         div {
-            class: "flex items-start gap-4",
+            class: "flex items-start gap-4 justify-center my-10 border-4 border-gray-800 p-4 rounded-lg shadow-lg w-200 bg-gray-850 mx-50 rounded-lg",
 
             img {
-                class: "size-108 shadow-xl rounded-full",
+                class: "size-108 shadow-xl rounded-xl",
                 src: ICON,
             }
 
@@ -131,7 +131,37 @@ fn App() -> Element {
 
                                 p {
                                     padding: "0",
-                                    "A homo sapien who writes awful code in Rust,Python and Go"
+                                    "A homo sapien who writes awful code in Rust,Python,Godot and Go"
+                                }
+                            }
+                        }
+                    }
+
+                    AccordionItem {
+                        index: 2,
+
+                        AccordionTrigger {
+                            "Where can i reach out to you?????"
+                        }
+
+                        AccordionContent {
+                            div {
+                                padding_bottom: "1rem",
+
+                                p {
+                                    padding: "0",
+                                    "Heres my GitHub profile: "
+                                    a {
+                                        href: "https://github.com/Cools9",
+                                        class:"text-blue-500 hover:text-blue-700",
+                                        target: "_blank",
+                                        "Cools9"
+                                    }
+
+                                }
+                                p {
+                                    padding: "0",
+                                    "my Discord profile: Cools9 yah thats it...."
                                 }
                             }
                         }
@@ -175,7 +205,7 @@ fn App() -> Element {
                                 stroke_width: 2
                             }
 
-                            "GitHub"
+                            "Hub"
 
                             
                         }
