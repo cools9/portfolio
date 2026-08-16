@@ -17,4 +17,7 @@ I wanted to try making a website without relying on the usual JavaScript framewo
 - Dioxus Icons
 The project is still pretty simple, but I'll probably keep adding random stuff to it as I learn more about Dioxus.
 
-GitHub: https://github.com/Cools9
+# Install Instructions(do u need this)
+- make sure you have rust and dioxus-cli installed
+- and then clone this repo
+- and then finally run ``` dx serve ``` in the directory
