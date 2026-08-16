@@ -211,14 +211,8 @@
       max-width: 96rem;
     }
   }
-  .mx-10 {
-    margin-inline: calc(var(--spacing) * 10);
-  }
   .mx-50 {
     margin-inline: calc(var(--spacing) * 50);
-  }
-  .mx-100 {
-    margin-inline: calc(var(--spacing) * 100);
   }
   .my-10 {
     margin-block: calc(var(--spacing) * 10);
@@ -231,9 +225,6 @@
   }
   .inline-flex {
     display: inline-flex;
-  }
-  .table {
-    display: table;
   }
   .size-108 {
     width: calc(var(--spacing) * 108);
@@ -248,14 +239,8 @@
   .min-h-screen {
     min-height: 100vh;
   }
-  .w-100 {
-    width: calc(var(--spacing) * 100);
-  }
   .w-200 {
     width: calc(var(--spacing) * 200);
-  }
-  .w-400 {
-    width: calc(var(--spacing) * 400);
   }
   .w-fit {
     width: fit-content;
@@ -263,14 +248,8 @@
   .w-full {
     width: 100%;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
-  }
-  .resize {
-    resize: both;
   }
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -299,18 +278,11 @@
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
-  .rounded-full {
-    border-radius: calc(infinity * 1px);
-  }
   .rounded-lg {
     border-radius: var(--radius-lg);
   }
   .rounded-xl {
     border-radius: var(--radius-xl);
-  }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
   }
   .border-4 {
     border-style: var(--tw-border-style);
@@ -318,12 +290,6 @@
   }
   .border-gray-800 {
     border-color: var(--color-gray-800);
-  }
-  .bg-gray-500 {
-    background-color: var(--color-gray-500);
-  }
-  .bg-gray-800 {
-    background-color: var(--color-gray-800);
   }
   .bg-gray-900 {
     background-color: var(--color-gray-900);
@@ -403,9 +369,6 @@
   }
   .text-white {
     color: var(--color-white);
-  }
-  .underline {
-    text-decoration-line: underline;
   }
   .shadow-lg {
     --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
