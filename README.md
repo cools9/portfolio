@@ -3,7 +3,7 @@ My personal portfolio website made using Rust and Dioxus.
 
 I wanted to try making a website without relying on the usual JavaScript frameworks, so I decided to mess around with Dioxus and see how far I could take it.
 
-#What it has
+# What it has
 - About me section
 - Project cards
 - GitHub links
